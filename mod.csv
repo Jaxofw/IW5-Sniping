@@ -1,0 +1,15 @@
+# String Tables
+stringtable,mp/sniperTable.csv
+
+# Menu Assets
+material,ui_button
+material,ui_square_round
+material,ui_xpbar
+
+# Scriptmenus
+menufile,ui_mp/includes/utility.inc
+menufile,ui_mp/scriptmenus/team_marinesopfor.menu
+menufile,ui_mp/scriptmenus/customization.menu
+
+# Snipers
+weapon,iw5_barrett_mp

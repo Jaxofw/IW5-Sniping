@@ -1,0 +1,53 @@
+#include "ui/menudef.h"
+#include "ui_mp/includes/arcane.inc"
+{
+	menuDef
+	{
+		name			"team_marinesopfor"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+
+		ARCANE_MENU( 2 )
+
+		BUTTON_ARCANE( 1, "Play", scriptMenuResponse "autoassign" )
+		BUTTON_ARCANE( 2, "Spectate", scriptMenuResponse "spectator" )
+		BUTTON_ARCANE( 3, "Customization", close self; open customization )
+		BUTTON_ARCANE( 4, "Mute Players", close self; open muteplayer )
+		BUTTON_ARCANE( 5, "Settings", close self; open settings )
+		BUTTON_ARCANE( 6, "Leave Game", close self; open leave )
+
+		FOOTER
+	}
+
+	menuDef
+	{
+		name			"settings"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open "team_marinesopfor"; }
+
+		ARCANE_MENU( 2 )
+
+		BUTTON_ARCANE( 1, "@MENU_CONTROLS", close self; open pc_options_controls_ingame )
+		BUTTON_ARCANE( 2, "Options", close self; open pc_options_video_ingame )
+		BUTTON_ARCANE( 3, "Go Back", close self; open team_marinesopfor )
+
+		FOOTER
+	}
+
+	menuDef
+	{
+		name			"leave"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open "team_marinesopfor"; }
+
+		ARCANE_MENU( 2 )
+
+		CREATE_TEXT( 61 130 36 36 1 0, "@MENU_ARE_YOU_SURE_QUIT", 1 1 1 1, 0.3, 0 )
+		BUTTON_ARCANE( 1, "@MENU_YES", close self; exec "disconnect" )
+		BUTTON_ARCANE( 2, "@MENU_NO", close self; open team_marinesopfor )
+
+		FOOTER
+	}
+}

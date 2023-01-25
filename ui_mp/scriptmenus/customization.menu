@@ -1,0 +1,101 @@
+#include "ui/menudef.h"
+#include "ui_mp/includes/arcane.inc"
+{
+	menuDef
+	{
+		name			"customization"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open team_marinesopfor; }
+
+		ARCANE_MENU( 2 )
+
+		BUTTON_ARCANE( 1, "Primary", close self; open primary )
+		BUTTON_ARCANE( 2, "Secondary", close self; open secondary )
+		BUTTON_ARCANE( 3, "Go Back", close self; open team_marinesopfor )
+	}
+
+	menuDef
+	{
+		name			"primary"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open customization; }
+
+		ARCANE_MENU( 0 )
+
+		EQUIPABLE( 1, SNIPER, 1 )
+		EQUIPABLE( 2, SNIPER, 2 )
+		EQUIPABLE( 3, SNIPER, 3 )
+		EQUIPABLE( 4, SNIPER, 4 )
+		EQUIPABLE( 5, SNIPER, 5 )
+		EQUIPABLE( 6, SNIPER, 6 )
+		EQUIPABLE( 7, SNIPER, 7 )
+		EQUIPABLE( 8, SNIPER, 8 )
+		EQUIPABLE( 9, SNIPER, 9 )
+		EQUIPABLE( 10, SNIPER, 10 )
+
+		CREATE_SHADER( BUTTON_X_START 440 172 17 ITEM_ALIGN, "gradient_center", 0 0 0 0.5 )
+		ARCANE_BUTTON_PAGE( BUTTON_X_START 440 46 17 ITEM_ALIGN, "Previous", open customization )
+		ARCANE_BUTTON_PAGE( (BUTTON_X_START + 141) 440 46 17 ITEM_ALIGN, "Next", open primary2 )
+	}
+
+	menuDef
+	{
+		name			"primary2"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open customization; }
+
+		ARCANE_MENU( 0 )
+
+		EQUIPABLE( 1, SNIPER, 11 )
+		EQUIPABLE( 2, SNIPER, 12 )
+		EQUIPABLE( 3, SNIPER, 13 )
+
+		CREATE_SHADER( BUTTON_X_START 440 172 17 ITEM_ALIGN, "gradient", 0 0 0 0.5 )
+		ARCANE_BUTTON_PAGE( BUTTON_X_START 440 46 17 ITEM_ALIGN, "Previous", open primary )
+	}
+
+	menuDef
+	{
+		name			"secondary"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open customization; }
+
+		ARCANE_MENU( 0 )
+
+		EQUIPABLE( 1, SNIPER, 1 )
+		EQUIPABLE( 2, SNIPER, 2 )
+		EQUIPABLE( 3, SNIPER, 3 )
+		EQUIPABLE( 4, SNIPER, 4 )
+		EQUIPABLE( 5, SNIPER, 5 )
+		EQUIPABLE( 6, SNIPER, 6 )
+		EQUIPABLE( 7, SNIPER, 7 )
+		EQUIPABLE( 8, SNIPER, 8 )
+		EQUIPABLE( 9, SNIPER, 9 )
+		EQUIPABLE( 10, SNIPER, 10 )
+
+		CREATE_SHADER( BUTTON_X_START 440 172 17 ITEM_ALIGN, "gradient_center", 0 0 0 0.5 )
+		ARCANE_BUTTON_PAGE( BUTTON_X_START 440 46 17 ITEM_ALIGN, "Previous", open customization )
+		ARCANE_BUTTON_PAGE( (BUTTON_X_START + 141) 440 46 17 ITEM_ALIGN, "Next", open secondary2 )
+	}
+
+	menuDef
+	{
+		name			"secondary2"
+		rect			FULLSCREEN_WIDE HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		style			WINDOW_STYLE_EMPTY
+		onESC 			{ close self; open customization; }
+
+		ARCANE_MENU( 0 )
+
+		EQUIPABLE( 1, SNIPER, 11 )
+		EQUIPABLE( 2, SNIPER, 12 )
+		EQUIPABLE( 3, SNIPER, 13 )
+
+		CREATE_SHADER( BUTTON_X_START 440 172 17 ITEM_ALIGN, "gradient", 0 0 0 0.5 )
+		ARCANE_BUTTON_PAGE( BUTTON_X_START 440 46 17 ITEM_ALIGN, "Previous", open secondary )
+	}
+}
