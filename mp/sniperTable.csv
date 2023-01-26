@@ -5,10 +5,10 @@ index,arrayindex,weapon,name
 4,3,cheytac_mp_cheytacscope,Intervention
 5,4,m4_mp,M40A3
 6,5,usp45_mp,R700
-7,6,mp412_mp,Arisaka
+7,6,arisaka_mp,Arisaka
 8,7,m16_mp,Kar98k
-9,8,p99_mp,DSR 50
+9,8,dsr_mp,DSR 50
 10,9,mp7_mp,AX-50
 11,10,scar_mp,L96A1
-12,11,cm901_mp,Dragoon
+12,11,dragoon_mp,Dragoon
 13,12,ump45_mp,PTRS-41

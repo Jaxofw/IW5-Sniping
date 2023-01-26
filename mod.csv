@@ -11,5 +11,10 @@ menufile,ui_mp/includes/utility.inc
 menufile,ui_mp/scriptmenus/team_marinesopfor.menu
 menufile,ui_mp/scriptmenus/customization.menu
 
-# Snipers
+# Default Snipers
 weapon,iw5_barrett_mp
+
+# Custom Snipers
+weapon,iw5_arisaka_mp
+weapon,iw5_dsr_mp
+weapon,iw5_dragoon_mp
