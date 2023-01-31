@@ -7,6 +7,10 @@ init()
     replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::getScoreInfoValue );
     replaceFunc( maps\mp\gametypes\_rank::xpPointsPopup, ::xpPointsPopup );
 
+    preCacheModel( "mp_body_ally_ghillie_desert_sniper" );
+    preCacheModel( "head_opforce_russian_urban_sniper" );
+    preCacheModel( "viewhands_iw5_ghillie_desert" );
+
     level.motd = "Welcome to Arcane Sniping ^2IW5!             ^7Join our ^5Discord ^7at ^5discord.gg/ArcaneNW ^7Have Fun and Enjoy your Stay!";
 
     setDvar( "player_sprintUnlimited", true );
@@ -47,6 +51,7 @@ onPlayerSpawned()
     {
         self waittill( "spawned_player" );
         self giveLoadout();
+        self setAsGhillie();
         self thread watchClipSize();
     }
 }
@@ -113,6 +118,14 @@ finalKillcamHook()
     }
 
     scripts\game\mapvote::mapVoteLogic();
+}
+
+setAsGhillie()
+{
+    self detachAll();
+    self setModel( "mp_body_ally_ghillie_desert_sniper" );
+    self attach( "head_opforce_russian_urban_sniper" );
+    self setViewModel( "viewhands_iw5_ghillie_desert" );
 }
 
 xpPointsPopup( amount, bonus, hudColor, glowAlpha )
