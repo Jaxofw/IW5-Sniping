@@ -5,11 +5,14 @@ stringtable,mp/sniperTable.csv
 material,ui_button
 material,ui_square_round
 material,ui_xpbar
+material,ui_mapvote_user
 
 # Scriptmenus
 menufile,ui_mp/includes/utility.inc
+menufile,ui_mp/includes/mapvote.inc
 menufile,ui_mp/scriptmenus/team_marinesopfor.menu
 menufile,ui_mp/scriptmenus/customization.menu
+menufile,ui_mp/scriptmenus/mapvote.menu
 
 # Default Snipers
 weapon,iw5_barrett_mp
@@ -18,3 +21,16 @@ weapon,iw5_barrett_mp
 weapon,iw5_arisaka_mp
 weapon,iw5_dsr_mp
 weapon,iw5_dragoon_mp
+
+# Loadscreens
+material,loadscreen_mp_courtyard_ss
+material,loadscreen_mp_dome
+material,loadscreen_mp_geometric
+material,loadscreen_mp_killhouse
+material,loadscreen_mp_nuked
+material,loadscreen_mp_poolday
+material,loadscreen_mp_poolparty
+material,loadscreen_mp_raid
+material,loadscreen_mp_rust
+material,loadscreen_mp_shipment
+material,loadscreen_mp_showdown_sh

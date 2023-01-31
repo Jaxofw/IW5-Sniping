@@ -93,15 +93,118 @@ _getIndexOf( string, value, startingIndex )
     return -1;
 }
 
-watchClipSize()
+getAllPlayers()
 {
-    for (;;)
-    {
-        self waittill( "weapon_fired" );
-        weapon = self GetCurrentWeapon();
-        clip = self getWeaponAmmoClip( weapon );
+	return getEntArray( "player", "classname" );
+}
 
-        if ( clip == 0 )
-            self giveMaxAmmo( weapon );
-    }
+formatMapName( map )
+{
+	formattedName = "";
+	index = 3;
+
+	if ( map == "mp_courtyard_ss" )
+		return "Erosion";
+	else if ( map == "mp_nuked" )
+		return "Nuketown";
+	else if ( map == "mp_showdown_sh" )
+		return "Showdown";
+
+	for ( j = index; j < map.size; j++ )
+	{
+		if ( j == index )
+            formattedName += toUpper( map[j] );
+		else
+		{
+			if ( foundUnderscore( map[j] ) )
+			{
+				formattedName += " " + toUpper( map[j + 1] );
+				j++;
+			}
+			else formattedName += map[j];
+		}
+	}
+
+	return formattedName;
+}
+
+toUpper( letter )
+{
+	switch ( letter )
+	{
+		case "a":
+			return "A";
+		case "b":
+			return "B";
+		case "c":
+			return "C";
+		case "d":
+			return "D";
+		case "e":
+			return "E";
+		case "f":
+			return "F";
+		case "g":
+			return "G";
+		case "h":
+			return "H";
+		case "i":
+			return "I";
+		case "j":
+			return "J";
+		case "k":
+			return "K";
+		case "l":
+			return "L";
+		case "m":
+			return "M";
+		case "n":
+			return "N";
+		case "o":
+			return "O";
+		case "p":
+			return "P";
+		case "q":
+			return "Q";
+		case "r":
+			return "R";
+		case "s":
+			return "S";
+		case "t":
+			return "T";
+		case "u":
+			return "U";
+		case "v":
+			return "V";
+		case "w":
+			return "W";
+		case "x":
+			return "X";
+		case "y":
+			return "Y";
+		case "z":
+			return "Z";
+		default:
+			return letter;
+	}
+}
+
+foundUnderscore( letter )
+{
+	switch ( letter )
+	{
+		case "_":
+			return true;
+		default:
+			return false;
+	}
+}
+
+saveAllStats()
+{
+    logPrint( "\n===== BEGIN STATS =====\n" +
+        "set an_stats " + "\"" + getDvar( "an_stats" ) + "\"" +
+        "set an_primary " + "\"" + getDvar( "an_primary" ) + "\"" +
+        "set an_secondary " + "\"" + getDvar( "an_secondary" ) + "\"" +
+        "\n===== END STATS =====\n" );
 }

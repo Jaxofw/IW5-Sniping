@@ -3,11 +3,13 @@
 
 init()
 {
-    setDvar( "player_sprintUnlimited", true );
-
     level.motd = "Welcome to Arcane Sniping ^2IW5!             ^7Join our ^5Discord ^7at ^5discord.gg/ArcaneNW ^7Have Fun and Enjoy your Stay!";
 
+    setDvar( "player_sprintUnlimited", true );
+    replacefunc( maps\mp\gametypes\_gamelogic::waittillFinalKillcamDone, ::finalKillcamHook );
+
     thread buildSniperTable();
+    thread scripts\game\mapvote::init();
     level thread onPlayerConnect();
 
     level waittill( "game over" );
@@ -19,6 +21,7 @@ onPlayerConnect()
     for (;;)
     {
         level waittill( "connected", player );
+
         player setClientDvars(
             "motd", level.motd,
             "ui_menu_playername", player.name
@@ -85,11 +88,35 @@ givePerks()
     self givePerk( "throwingknife_mp", true );
 }
 
-saveAllStats()
+watchClipSize()
 {
-    logPrint( "\n===== BEGIN STATS =====\n" +
-        "set an_stats " + "\"" + getDvar( "an_stats" ) + "\"" +
-        "set an_primary " + "\"" + getDvar( "an_primary" ) + "\"" +
-        "set an_secondary " + "\"" + getDvar( "an_secondary" ) + "\"" +
-        "\n===== END STATS =====\n" );
+    for (;;)
+    {
+        self waittill( "weapon_fired" );
+
+        weapon = self GetCurrentWeapon();
+        clip = self getWeaponAmmoClip( weapon );
+
+        if ( clip == 0 )
+            self giveMaxAmmo( weapon );
+    }
+}
+
+finalKillcamHook()
+{
+    players = getAllPlayers();
+
+    if ( !isDefined( level.finalkillcam_winner ) )
+    {
+        for ( i = 0; i < players.size; i++ )
+            players[i] thread scripts\game\mapvote::playerLogic();
+    }
+    else
+    {
+        level waittill( "final_killcam_done" );
+        for ( i = 0; i < players.size; i++ )
+            players[i] thread scripts\game\mapvote::playerLogic();
+    }
+
+    scripts\game\mapvote::mapVoteLogic();
 }

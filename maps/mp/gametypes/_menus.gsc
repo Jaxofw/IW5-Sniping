@@ -11,6 +11,7 @@ init()
 		game["menu_primary2"] = "primary2";
 		game["menu_secondary"] = "secondary";
 		game["menu_secondary2"] = "secondary2";
+		game["menu_mapvote"] = "mapvote";
 
 		if ( !level.console )
 		{
@@ -30,6 +31,7 @@ init()
 		precacheMenu( game["menu_primary2"] );
 		precacheMenu( game["menu_secondary"] );
 		precacheMenu( game["menu_secondary2"] );
+		precacheMenu( game["menu_mapvote"] );
 
 		precacheString( &"MP_HOST_ENDED_GAME" );
 		precacheString( &"MP_HOST_ENDGAME_RESPONSE" );

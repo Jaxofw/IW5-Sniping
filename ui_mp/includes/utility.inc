@@ -1,7 +1,8 @@
 #define SNIPER							"mp/sniperTable.csv"
 #define FONT_SCALE						0.3
-#define COLOR_ARCANE					0.18 0.36 0.82
 #define ITEM_ALIGN						1 0
+#define COLOR_ARCANE					0.18 0.36 0.82
+#define COLOR_ITEM_SELECTED				0.35 0.82 0.18 1
 
 #define XP_MAX							( int( tablelookup( "mp/ranktable.csv", 0, levelforexperiencemp( getplayerdata( "experience" ) ), 7 ) ) )
 #define XP_MIN							( int( tablelookup( "mp/ranktable.csv", 0, levelforexperiencemp( getplayerdata( "experience" ) ), 2 ) ) )
@@ -18,7 +19,7 @@
 	CREATE_SHADER_VIS( position, texture, forecolor_, 1 )
 
 #define CREATE_SHADER_VIS( position, texture, forecolor_, visibility ) \
-	CREATE_SHADER_EX( position, texture, forecolor_, 1, ; )
+	CREATE_SHADER_EX( position, texture, forecolor_, visibility, ; )
 
 #define CREATE_SHADER_EX( position, texture, forecolor_, visibility, extra ) \
 	itemDef \
