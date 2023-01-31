@@ -3,16 +3,23 @@
 
 init()
 {
+    replacefunc( maps\mp\gametypes\_gamelogic::waittillFinalKillcamDone, ::finalKillcamHook );
+    replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::getScoreInfoValue );
+    replaceFunc( maps\mp\gametypes\_rank::xpPointsPopup, ::xpPointsPopup );
+
     level.motd = "Welcome to Arcane Sniping ^2IW5!             ^7Join our ^5Discord ^7at ^5discord.gg/ArcaneNW ^7Have Fun and Enjoy your Stay!";
 
     setDvar( "player_sprintUnlimited", true );
-    replacefunc( maps\mp\gametypes\_gamelogic::waittillFinalKillcamDone, ::finalKillcamHook );
+
+    if ( getDvar( "g_gametype" ) == "dm" )
+        setDvar( "scr_dm_scorelimit", 700 ); // 70
+    else if ( getDvar( "g_gametype" ) == "war" )
+        setDvar( "scr_war_scorelimit", 1000 ); // 100
 
     thread buildSniperTable();
     thread scripts\game\mapvote::init();
     level thread onPlayerConnect();
 
-    level waittill( "game over" );
     saveAllStats();
 }
 
@@ -39,27 +46,12 @@ onPlayerSpawned()
     for (;;)
     {
         self waittill( "spawned_player" );
-        self giveWeapons();
-        self givePerks();
+        self giveLoadout();
         self thread watchClipSize();
     }
 }
 
-buildSniperTable()
-{
-    level.snipers = [];
-    table = "mp/sniperTable.csv";
-
-    for ( idx = 1; isDefined( tableLookup( table, 0, idx, 0 ) ) && tableLookup( table, 0, idx, 0 ) != ""; idx++ )
-    {
-        id = int( tableLookup( table, 0, idx, 1 ) );
-        level.snipers[id]["item"] = "iw5_" + tableLookup( table, 0, idx, 2 );
-        level.snipers[id]["name"] = tableLookup( table, 0, idx, 3 );
-        preCacheItem( level.snipers[id]["item"] );
-    }
-}
-
-giveWeapons()
+giveLoadout()
 {
     primary = self getStats( "primary" );
     secondary = self getStats( "secondary" );
@@ -74,6 +66,8 @@ giveWeapons()
     self giveWeapon( self.pers["sniper_secondary"] );
     self giveMaxAmmo( self.pers["sniper_secondary"] );
     self switchToWeapon( self.pers["sniper_primary"] );
+
+    self givePerks();
 }
 
 givePerks()
@@ -119,4 +113,59 @@ finalKillcamHook()
     }
 
     scripts\game\mapvote::mapVoteLogic();
+}
+
+xpPointsPopup( amount, bonus, hudColor, glowAlpha )
+{
+	self endon( "disconnect" );
+	self endon( "joined_team" );
+	self endon( "joined_spectators" );
+ 
+	if ( amount == 0 )
+		return;
+ 
+	self notify( "xpPointsPopup" );
+	self endon( "xpPointsPopup" );
+ 
+	self.xpUpdateTotal += amount;
+	self.bonusUpdateTotal += bonus;
+ 
+	wait ( 0.05 );
+ 
+	if ( self.xpUpdateTotal < 0 )
+		self.hud_xpPointsPopup.label = &"";
+	else
+		self.hud_xpPointsPopup.label = &"MP_PLUS";
+ 
+	self.hud_xpPointsPopup.color = hudColor;
+	self.hud_xpPointsPopup.glowColor = hudColor;
+	self.hud_xpPointsPopup.glowAlpha = glowAlpha;
+ 
+	self.hud_xpPointsPopup setValue(self.xpUpdateTotal);
+	self.hud_xpPointsPopup.alpha = 0.85;
+	self.hud_xpPointsPopup thread maps\mp\gametypes\_hud::fontPulse( self );
+ 
+	increment = max( int( self.bonusUpdateTotal / 20 ), 1 );
+ 
+	if ( self.bonusUpdateTotal )
+	{
+		while ( self.bonusUpdateTotal > 0 )
+		{
+			self.xpUpdateTotal += min( self.bonusUpdateTotal, increment );
+			self.bonusUpdateTotal -= min( self.bonusUpdateTotal, increment );
+ 
+			self.hud_xpPointsPopup setValue( self.xpUpdateTotal );
+ 
+			wait ( 0.05 );
+		}
+	}	
+	else
+	{
+		wait ( 1.5 );
+	}
+ 
+	self.hud_xpPointsPopup fadeOverTime( 0.75 );
+	self.hud_xpPointsPopup.alpha = 0;
+ 
+	self.xpUpdateTotal = 0;		
 }
