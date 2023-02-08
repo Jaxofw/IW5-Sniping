@@ -22,7 +22,7 @@
             "secondaryAliasName": null,
             "sequence": 0,
             "slavePercentage": 0.8999999761581421,
-            "soundfile": "t5/scav/sndnt#fly_ubersniper_bolt_down.wav",
+            "soundfile": "t5/scav/bolt_down.wav",
             "speakerMap": {
                 "channelMaps": [
                     {
