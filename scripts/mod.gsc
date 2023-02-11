@@ -15,6 +15,8 @@ init()
     level.motd = "Welcome to Arcane Sniping ^2IW5!             ^7Join our ^5Discord ^7at ^5discord.gg/ArcaneNW ^7Have Fun and Enjoy your Stay!";
 
     setDvar( "player_sprintUnlimited", true );
+    setDvar( "g_speed", 220 );
+    setDvar( "jump_slowdownEnable", 0 );
 
     if ( getDvar( "g_gametype" ) == "dm" )
         setDvar( "scr_dm_scorelimit", 700 ); // 70
