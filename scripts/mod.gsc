@@ -1,3 +1,4 @@
+#include common_scripts\utility;
 #include maps\mp\_utility;
 #include scripts\game\utility;
 
@@ -90,13 +91,8 @@ watchClipSize()
 {
     for (;;)
     {
-        self waittill( "weapon_fired" );
-
-        weapon = self GetCurrentWeapon();
-        clip = self getWeaponAmmoClip( weapon );
-
-        if ( clip == 0 )
-            self giveMaxAmmo( weapon );
+        self waittill_any( "reload" );
+        self giveMaxAmmo( self getCurrentWeapon() );
     }
 }
 
