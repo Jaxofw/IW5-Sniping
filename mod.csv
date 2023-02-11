@@ -22,6 +22,11 @@ weapon,iw5_arisaka_mp
 weapon,iw5_dsr_mp
 weapon,iw5_dragoon_mp
 weapon,iw5_scavenger_mp
+weapon,iw5_ptrs_mp
+weapon,iw5_l96_mp
+weapon,iw5_kar98_mp
+weapon,iw5_m40a3_mp
+weapon,iw5_r700_mp
 
 # Loadscreens
 material,loadscreen_mp_courtyard_ss

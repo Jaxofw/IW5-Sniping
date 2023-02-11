@@ -3,12 +3,12 @@ index,arrayindex,weapon,name
 2,1,l96a1_mp_l96a1scope,L118A
 3,2,msr_mp_msrscope,MSR
 4,3,cheytac_mp_cheytacscope,Intervention
-5,4,m4_mp,M40A3
-6,5,usp45_mp,R700
+5,4,m40a3_mp,M40A3
+6,5,r700_mp,R700
 7,6,arisaka_mp,Arisaka
-8,7,m16_mp,Kar98k
+8,7,kar98_mp,Kar98k
 9,8,dsr_mp,DSR 50
 10,9,scavenger_mp,Scavenger
-11,10,scar_mp,L96A1
+11,10,l96_mp,L96A1
 12,11,dragoon_mp,Dragoon
-13,12,ump45_mp,PTRS-41
+13,12,ptrs_mp,PTRS-41
