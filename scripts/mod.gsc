@@ -123,9 +123,7 @@ finalKillcamHook()
 setAsGhillie()
 {
     self detachAll();
-    self setModel( "mp_body_ally_ghillie_desert_sniper" );
-    self attach( "head_opforce_russian_urban_sniper" );
-    self setViewModel( "viewhands_iw5_ghillie_desert" );
+    [[ game[self.pers["team"] + "_model"]["GHILLIE"] ]]();
 }
 
 xpPointsPopup( amount, bonus, hudColor, glowAlpha )
