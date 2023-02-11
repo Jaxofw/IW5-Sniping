@@ -65,12 +65,11 @@ giveLoadout()
     self.pers["sniper_secondary"] = level.snipers[secondary]["item"];
 
     self takeAllWeapons();
-    wait .05;
     self giveWeapon( self.pers["sniper_primary"] );
     self giveMaxAmmo( self.pers["sniper_primary"] );
     self giveWeapon( self.pers["sniper_secondary"] );
     self giveMaxAmmo( self.pers["sniper_secondary"] );
-    self switchToWeapon( self.pers["sniper_primary"] );
+    self setSpawnWeapon( self.pers["sniper_primary"] );
 
     self givePerks();
 }
