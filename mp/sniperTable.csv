@@ -1,8 +1,8 @@
 index,arrayindex,weapon,name
 1,0,barrett_mp_barrettscope,Barrett
-2,1,l96a1_mp_l96a1scope,L118A
-3,2,msr_mp_msrscope,MSR
-4,3,cheytac_mp_cheytacscope,Intervention
+2,1,l96a1_mp_l96a1scope_xmags,L118A
+3,2,msr_mp_msrscope_xmags,MSR
+4,3,cheytac_mp_cheytacscope_xmags,Intervention
 5,4,m40a3_mp,M40A3
 6,5,r700_mp,R700
 7,6,arisaka_mp,Arisaka
