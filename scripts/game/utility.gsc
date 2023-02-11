@@ -224,21 +224,3 @@ buildSniperTable()
         preCacheItem( level.snipers[id]["item"] );
     }
 }
-
-getScoreInfoValue( type )
-{
-	switch ( type )
-	{
-		case "assist":
-			if ( level.teambased )
-				return 2;
-		case "headshot":
-		case "kill":
-			if ( level.teambased )
-				return 10;
-			else
-				return 5;
-		default:
-			return level.scoreInfo[type]["value"];
-	}
-}

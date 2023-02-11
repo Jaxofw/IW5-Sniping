@@ -5,7 +5,6 @@
 init()
 {
     replacefunc( maps\mp\gametypes\_gamelogic::waittillFinalKillcamDone, ::finalKillcamHook );
-    replaceFunc( maps\mp\gametypes\_rank::getScoreInfoValue, ::getScoreInfoValue );
     replaceFunc( maps\mp\gametypes\_rank::xpPointsPopup, ::xpPointsPopup );
 
     preCacheModel( "mp_body_ally_ghillie_desert_sniper" );
@@ -23,10 +22,28 @@ init()
     else if ( getDvar( "g_gametype" ) == "war" )
         setDvar( "scr_war_scorelimit", 1000 ); // 100
 
+    maps\mp\gametypes\_rank::registerScoreInfo( "kill", 10 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "headshot", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "execution", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "avenger", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "defender", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "posthumous", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "revenge", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "double", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "triple", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "multi", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "buzzkill", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "firstblood", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "comeback", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "longshot", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "assistedsuicide", 0 );
+    maps\mp\gametypes\_rank::registerScoreInfo( "knifethrow", 0 );
+
     thread buildSniperTable();
     thread scripts\game\mapvote::init();
     level thread onPlayerConnect();
 
+    level waittill( "game over" );
     saveAllStats();
 }
 
@@ -125,55 +142,53 @@ setAsGhillie()
 
 xpPointsPopup( amount, bonus, hudColor, glowAlpha )
 {
-	self endon( "disconnect" );
-	self endon( "joined_team" );
-	self endon( "joined_spectators" );
- 
-	if ( amount == 0 )
-		return;
- 
-	self notify( "xpPointsPopup" );
-	self endon( "xpPointsPopup" );
- 
-	self.xpUpdateTotal += amount;
-	self.bonusUpdateTotal += bonus;
- 
-	wait ( 0.05 );
- 
-	if ( self.xpUpdateTotal < 0 )
-		self.hud_xpPointsPopup.label = &"";
-	else
-		self.hud_xpPointsPopup.label = &"MP_PLUS";
- 
-	self.hud_xpPointsPopup.color = hudColor;
-	self.hud_xpPointsPopup.glowColor = hudColor;
-	self.hud_xpPointsPopup.glowAlpha = glowAlpha;
- 
-	self.hud_xpPointsPopup setValue(self.xpUpdateTotal);
-	self.hud_xpPointsPopup.alpha = 0.85;
-	self.hud_xpPointsPopup thread maps\mp\gametypes\_hud::fontPulse( self );
- 
-	increment = max( int( self.bonusUpdateTotal / 20 ), 1 );
- 
-	if ( self.bonusUpdateTotal )
-	{
-		while ( self.bonusUpdateTotal > 0 )
-		{
-			self.xpUpdateTotal += min( self.bonusUpdateTotal, increment );
-			self.bonusUpdateTotal -= min( self.bonusUpdateTotal, increment );
- 
-			self.hud_xpPointsPopup setValue( self.xpUpdateTotal );
- 
-			wait ( 0.05 );
-		}
-	}	
-	else
-	{
-		wait ( 1.5 );
-	}
- 
-	self.hud_xpPointsPopup fadeOverTime( 0.75 );
-	self.hud_xpPointsPopup.alpha = 0;
- 
-	self.xpUpdateTotal = 0;		
+    self endon( "disconnect" );
+    self endon( "joined_team" );
+    self endon( "joined_spectators" );
+
+    if ( amount == 0 )
+        return;
+
+    self notify( "xpPointsPopup" );
+    self endon( "xpPointsPopup" );
+
+    self.xpUpdateTotal += amount;
+    self.bonusUpdateTotal += bonus;
+
+    wait( 0.05 );
+
+    if ( self.xpUpdateTotal < 0 )
+        self.hud_xpPointsPopup.label = &"";
+    else
+        self.hud_xpPointsPopup.label = &"MP_PLUS";
+
+    self.hud_xpPointsPopup.color = hudColor;
+    self.hud_xpPointsPopup.glowColor = hudColor;
+    self.hud_xpPointsPopup.glowAlpha = glowAlpha;
+
+    self.hud_xpPointsPopup setValue( self.xpUpdateTotal );
+    self.hud_xpPointsPopup.alpha = 0.85;
+    self.hud_xpPointsPopup thread maps\mp\gametypes\_hud::fontPulse( self );
+
+    increment = max( int( self.bonusUpdateTotal / 20 ), 1 );
+
+    if ( self.bonusUpdateTotal )
+    {
+        while ( self.bonusUpdateTotal > 0 )
+        {
+            self.xpUpdateTotal += min( self.bonusUpdateTotal, increment );
+            self.bonusUpdateTotal -= min( self.bonusUpdateTotal, increment );
+
+            self.hud_xpPointsPopup setValue( self.xpUpdateTotal );
+
+            wait( 0.05 );
+        }
+    }
+    else
+        wait( 1.5 );
+
+    self.hud_xpPointsPopup fadeOverTime( 0.75 );
+    self.hud_xpPointsPopup.alpha = 0;
+
+    self.xpUpdateTotal = 0;
 }
