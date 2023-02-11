@@ -10,7 +10,7 @@ ECHO 2. Build Mod
 ECHO 3. Exit
 ECHO.
 
-CHOICE /C 1234 /M "Enter your choice: "
+CHOICE /C 123 /M "Enter your choice: "
 
 IF ERRORLEVEL 3 GOTO CloseAll
 IF ERRORLEVEL 2 GOTO BuildMod
