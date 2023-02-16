@@ -103,8 +103,18 @@ formatMapName( map )
 	formattedName = "";
 	index = 3;
 
-	if ( map == "mp_courtyard_ss" )
+	if ( map == "mp_bo2frost" )
+		return "Frost";
+	else if ( map == "mp_bo2grind" )
+		return "Grind";
+	else if ( map == "mp_bo2paintball" )
+		return "Rush";
+	else if ( map == "mp_cargoship" )
+		return "Wetwork";
+	else if ( map == "mp_courtyard_ss" )
 		return "Erosion";
+	else if ( map == "mp_firingrange" )
+		return "Firing Range";
 	else if ( map == "mp_nuked" )
 		return "Nuketown";
 	else if ( map == "mp_showdown_sh" )

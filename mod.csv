@@ -29,8 +29,17 @@ weapon,iw5_m40a3_mp
 weapon,iw5_r700_mp
 
 # Loadscreens
+material,loadscreen_mp_bo2frost
+material,loadscreen_mp_bo2grind
+material,loadscreen_mp_bo2paintball
+material,loadscreen_mp_bog
+material,loadscreen_mp_cargoship
+material,loadscreen_mp_countdown
 material,loadscreen_mp_courtyard_ss
+material,loadscreen_mp_crash
+material,loadscreen_mp_crossfire
 material,loadscreen_mp_dome
+material,loadscreen_mp_firingrange
 material,loadscreen_mp_geometric
 material,loadscreen_mp_killhouse
 material,loadscreen_mp_nuked
@@ -40,3 +49,4 @@ material,loadscreen_mp_raid
 material,loadscreen_mp_rust
 material,loadscreen_mp_shipment
 material,loadscreen_mp_showdown_sh
+material,loadscreen_mp_vacant

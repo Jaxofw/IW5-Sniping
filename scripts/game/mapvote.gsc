@@ -7,17 +7,34 @@ init()
     level.mapsInVote = 10;
     level.voteDuration = 15;
 
-    level.maps[level.maps.size] = "mp_courtyard_ss";
     level.maps[level.maps.size] = "mp_dome";
     level.maps[level.maps.size] = "mp_geometric";
-    level.maps[level.maps.size] = "mp_killhouse";
     level.maps[level.maps.size] = "mp_nuked";
-    level.maps[level.maps.size] = "mp_poolday";
-    level.maps[level.maps.size] = "mp_poolparty";
-    level.maps[level.maps.size] = "mp_raid";
-    level.maps[level.maps.size] = "mp_rust";
-    level.maps[level.maps.size] = "mp_shipment";
     level.maps[level.maps.size] = "mp_showdown_sh";
+    level.maps[level.maps.size] = "mp_vacant";
+
+    if ( getDvar( "g_gametype" ) == "dm" )
+    {
+        level.maps[level.maps.size] = "mp_courtyard_ss";
+        level.maps[level.maps.size] = "mp_rust";
+        level.maps[level.maps.size] = "mp_shipment";
+        level.maps[level.maps.size] = "mp_killhouse";
+        level.maps[level.maps.size] = "mp_poolday";
+        level.maps[level.maps.size] = "mp_poolparty";
+    }
+    else
+    {
+        level.maps[level.maps.size] = "mp_bo2frost";
+        level.maps[level.maps.size] = "mp_bo2grind";
+        level.maps[level.maps.size] = "mp_bo2paintball";
+        level.maps[level.maps.size] = "mp_bog";
+        level.maps[level.maps.size] = "mp_cargoship";
+        level.maps[level.maps.size] = "mp_countdown";
+        level.maps[level.maps.size] = "mp_crash";
+        level.maps[level.maps.size] = "mp_crossfire";
+        level.maps[level.maps.size] = "mp_firingrange";
+        level.maps[level.maps.size] = "mp_raid";
+    }
 }
 
 mapVoteLogic()
